@@ -16,3 +16,5 @@
 #map div.path{background-color: grey;}
 #map div.wall{background-color: silver;}
 #map div.player{background-color: yellow;}
+#map div.mob{background-color: red;}
+#map div.weapon{background-color: gold;}
