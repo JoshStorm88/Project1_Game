@@ -30,7 +30,7 @@ $(()=>{
   $('#map').on('mouseover','div',function(){
     $('#cell-address').val(`${$(this).data('x')}-${$(this).data('y')}`);
   });
-
+  let playerChar = {};
   //GRID LAYOUT//
   $.each(gameGrid, (i, row) =>{
     $.each(row, (j, cell) =>{
@@ -41,8 +41,8 @@ $(()=>{
         $element.addClass('wall');
       }if(cell === 2){
         $element.addClass('player');
-        movePlayer = {x:i, y:j};
-        gameGrid[movePlayer.x][movePlayer.y]= 0;
+        playerChar = {x: i, y: j};
+        gameGrid[playerChar.x][playerChar.y]= 0;
       }if(cell === 3){
         $element.addClass('mob');
       }if(cell === 4){
@@ -60,52 +60,67 @@ $(()=>{
       $element.appendTo('#map');
     });
   });
-});
 
-//PLAYER MOVEMENT//
 
-function playerMovement(){
-  $('.player').removeClass('player').addClass('path');
-  player.x -= 1;
-  $(`div[data-x='${player.x}'][data-y='${player.y}']`).removeClass('path').addClass('player');
-}
+  //PLAYER MOVEMENT//
 
-// function movePlayer(){
-$(document).on('keypress', function(e){
-  switch(e.which){
-    case 37:     // MOVE PLAYER UP//
-    if (gameGrid[player.x-1][player.y] === 0){
-      playerMovement();}
-      // if (gameGrid[playerLocation.x][playerLocation.y] === 4){
-      //     pickupWeapon();
-      // if (gameGrid[playerLocation.x][playerLocation.y] === 5){
-      //     pickupHealth();
-      //   }
-    break;
-    case 38:     // MOVE PLAYER LEFT//
-    if (gameGrid[player.x][player.y-1] === 0){
-        playerMovement();}
+  function playerMovement(){
+
+  }
+
+  function movePlayer(){
+    $(document).on('keypress', function(e){
+      switch(e.which){
+        case 119:     // MOVE PLAYER UP//
+        if (gameGrid[playerChar.x-1][playerChar.y] === 0){
+          $('.player').removeClass('player').addClass('path');
+          playerChar.x -= 1;
+          $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('path').addClass('player');
+        }
         // if (gameGrid[playerLocation.x][playerLocation.y] === 4){
         //     pickupWeapon();
         // if (gameGrid[playerLocation.x][playerLocation.y] === 5){
         //     pickupHealth();
         //   }
-    break;
-    case 39:     // MOVE PLAYER DOWN//
-    if (gameGrid[player.x+1][player.y] === 0){
-          playerMovement();}
-          // if (gameGrid[playerLocation.x][playerLocation.y] === 4){
-          //     pickupWeapon();
-          // if (gameGrid[playerLocation.x][playerLocation.y] === 5){
-          //     pickupHealth();
-          //   }
-    break;
-    case 40:     // MOVE PLAYER RIGHT//
-    if (gameGrid[player.x][player.y+1] === 0){
-            playerMovement();}
-            // if (gameGrid[playerLocation.x][playerLocation.y] === 4){
-            //     pickupWeapon();
-            // if (gameGrid[playerLocation.x][playerLocation.y] === 5){
-            //     pickupHealth();
-            //   }
-    break;
+        break;
+        case 97:     // MOVE PLAYER LEFT//
+        if (gameGrid[playerChar.x][playerChar.y-1] === 0){
+          $('.player').removeClass('player').addClass('path');
+          playerChar.y -= 1;
+          $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('path').addClass('player');
+        }
+        // if (gameGrid[playerLocation.x][playerLocation.y] === 4){
+        //     pickupWeapon();
+        // if (gameGrid[playerLocation.x][playerLocation.y] === 5){
+        //     pickupHealth();
+        //   }
+        break;
+        case 115:     // MOVE PLAYER DOWN//
+        if (gameGrid[playerChar.x+1][playerChar.y] === 0){
+          $('.player').removeClass('player').addClass('path');
+          playerChar.x += 1;
+          $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('path').addClass('player');
+        }
+        // if (gameGrid[playerLocation.x][playerLocation.y] === 4){
+        //     pickupWeapon();
+        // if (gameGrid[playerLocation.x][playerLocation.y] === 5){
+        //     pickupHealth();
+        //   }
+        break;
+        case 100:     // MOVE PLAYER RIGHT//
+        if (gameGrid[playerChar.x][playerChar.y+1] === 0){
+          $('.player').removeClass('player').addClass('path');
+          playerChar.y += 1;
+          $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('path').addClass('player');
+        }
+        // if (gameGrid[playerLocation.x][playerLocation.y] === 4){
+        //     pickupWeapon();
+        // if (gameGrid[playerLocation.x][playerLocation.y] === 5){
+        //     pickupHealth();
+        //   }
+        break;
+      };
+    });
+  }
+  movePlayer()
+});
