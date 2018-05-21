@@ -70,12 +70,14 @@ $(()=>{
   });
   //###############ITEMS & WEAPONS PICKUP##########################//
   function pickupWeapon(){
-
+    $('.player').removeClass('weapon').addClass('path');
+  }
+  function pickupHealth(){
+    $('.player').removeClass('healthPot').addClass('path');
   }
   //#####################PLAYER MOVEMENT################################//
 
   function playerMovement(){
-
   }
 
   function movePlayer(){
@@ -86,9 +88,15 @@ $(()=>{
             $('.player').removeClass('player').addClass('path');
             playerChar.x -= 1;
             $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('path').addClass('player');
-          }if (gameGrid[playerChar.x][playerChar.y] === 4){
+          }if (gameGrid[playerChar.x-1][playerChar.y] === 4){
+            $('.player').removeClass('player').addClass('path');
+            playerChar.x -= 1;
+            $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('weapon').addClass('player');
             pickupWeapon();
-          }if (gameGrid[playerChar.x][playerChar.y] === 5){
+          }if (gameGrid[playerChar.x-1][playerChar.y] === 5){
+            $('.player').removeClass('player').addClass('path');
+            playerChar.x -= 1;
+            $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('healthPot').addClass('player');
             pickupHealth();
           }
           break;
@@ -97,9 +105,15 @@ $(()=>{
             $('.player').removeClass('player').addClass('path');
             playerChar.y -= 1;
             $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('path').addClass('player');
-          }if (gameGrid[playerChar.x][playerChar.y] === 4){
+          }if (gameGrid[playerChar.x][playerChar.y-1] === 4){
+            $('.player').removeClass('player').addClass('path');
+            playerChar.y -= 1;
+            $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('weapon').addClass('player');
             pickupWeapon();
-          }if (gameGrid[playerChar.x][playerChar.y] === 5){
+          }if (gameGrid[playerChar.x][playerChar.y-1] === 5){
+            $('.player').removeClass('player').addClass('path');
+            playerChar.y -= 1;
+            $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('healthPot').addClass('player');
             pickupHealth();
           }
           break;
@@ -108,9 +122,15 @@ $(()=>{
             $('.player').removeClass('player').addClass('path');
             playerChar.x += 1;
             $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('path').addClass('player');
-          }if (gameGrid[playerChar.x][playerChar.y] === 4){
+          }if (gameGrid[playerChar.x+1][playerChar.y] === 4){
+            $('.player').removeClass('player').addClass('path');
+            playerChar.x += 1;
+            $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('weapon').addClass('player');
             pickupWeapon();
-          }if (gameGrid[playerChar.x][playerChar.y] === 5){
+          }if (gameGrid[playerChar.x+1][playerChar.y] === 5){
+            $('.player').removeClass('player').addClass('path');
+            playerChar.x += 1;
+            $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('healthPot').addClass('player');
             pickupHealth();
           }
           break;
@@ -119,9 +139,15 @@ $(()=>{
             $('.player').removeClass('player').addClass('path');
             playerChar.y += 1;
             $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('path').addClass('player');
-          }if (gameGrid[playerChar.x][playerChar.y] === 4){
+          }if (gameGrid[playerChar.x][playerChar.y+1] === 4){
+            $('.player').removeClass('player').addClass('path');
+            playerChar.y += 1;
+            $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('weapon').addClass('player');
             pickupWeapon();
-          }if (gameGrid[playerChar.x][playerChar.y] === 5){
+          }if (gameGrid[playerChar.x][playerChar.y+1] === 5){
+            $('.player').removeClass('player').addClass('path');
+            playerChar.y += 1;
+            $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('healthPot').addClass('player');
             pickupHealth();
           }
           break;

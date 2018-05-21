@@ -1,6 +1,7 @@
 
 *{
   box-sizing: border-box;
+  float: left;
 }
 #map {
   width: 1120px;
@@ -8,14 +9,21 @@
 
 }
 #map div{
-  border: 1px solid silver;
+  border: 1px solid black;
   width: 40px;
   height: 40px;
   float:left;
 }
 
+#userInterface {
+  background-color: grey;
+  height: 800px;
+  width: 275px;
+}
+
+
 #map div.path{background-color: grey;}
-#map div.wall{background-color: silver;}
+#map div.wall{background-color: black;}
 #map div.player{background-color: yellow;}
 #map div.mob{background-color: red;}
 #map div.weapon{background-color: gold;}
