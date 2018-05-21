@@ -1,7 +1,7 @@
 
 console.log('Cheese');
 
-const grid = [
+const gameGrid = [
   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
   [1,2,0,0,0,0,0,0,0,4,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1],
   [1,0,0,0,0,0,0,0,0,1,1,1,1,1,5,6,0,1,1,1,0,3,1,0,4,1,1,1],
@@ -30,8 +30,8 @@ $(()=>{
     $('#cell-address').val(`${$(this).data('x')}-${$(this).data('y')}`);
   });
 
-  $.each(grid, (r, row) =>{
-    $.each(row, (i, cell) =>{
+  $.each(gameGrid, (i, row) =>{
+    $.each(row, (j, cell) =>{
       const $element = $('<div />');
       if(cell === 0){
         $element.addClass('path');
@@ -58,16 +58,3 @@ $(()=>{
 });
 
 //PLAYER MOVEMENT//
-$(document).keydown(function(e) {
-  const $el = $(".keyboard");
-  const code = e.keyCode;
-  if(code === 37){ // left
-    $el.css("margin-left", "-=5px");
-  }else if(code === 39){ // right
-    $el.css("margin-left", "+=10px");
-  }else if(code === 38){ // top
-    $el.css("margin-top", "-=10px");
-  }else if(code === 40){ // bottom
-    $el.css("margin-top", "+=10px");
-  }
-});
