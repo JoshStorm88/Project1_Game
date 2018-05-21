@@ -25,14 +25,14 @@ const gameGrid = [
   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 ];
 
-//#######################X & Y INFO#############################//
+//#######################X & Y LOCATIONS#############################//
 $(()=>{
   $('#map').on('mouseover','div',function(){
     $('#cell-address').val(`${$(this).data('x')}-${$(this).data('y')}`);
   });
   let playerChar = {};
 
-  //###################GRID LAYOUT#########################//
+  //###################GRID CELL CLASSES#########################//
   $.each(gameGrid, (i, row) =>{
     $.each(row, (j, cell) =>{
       const $element = $('<div />');

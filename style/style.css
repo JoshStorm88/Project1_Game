@@ -16,9 +16,29 @@
 }
 
 #userInterface {
-  background-color: grey;
+  background-color: black;
   height: 800px;
-  width: 275px;
+  width: 290px;
+}
+
+ul li {
+  width: 150px;
+  height: 150px;
+  font-size: 30px;
+  border: silver solid 3px;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+.heroHealth {
+  color: lightgreen;
+}
+.heroWeapon {
+  color: gold;
+}
+.heroAttack {
+  color: white;
 }
 
 
