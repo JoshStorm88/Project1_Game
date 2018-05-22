@@ -80,90 +80,127 @@ $(()=>{
   }
 
   //#################### MOBS LOCATION & INFO ######################################//
+  mobsArray = [
+    {health: 20, attack: 3, x: 1, y: 5},
+    {health: 20, attack: 3, x: 2, y: 1},
+    {health: 20, attack: 3, x: 10, y: 2}
+  ];
 
-const mob1 = {
+  player = {
+    x: 2,
+    y: 1
+  }
+
+function mobOnPlayerSquare() {
+  for(let i = 0; i < mobsArray.length; i++) {
+    const mob = mobs[i];
+    if(mob.x === player.x && mob.y === player.y) {
+      return mob;
+    }
+  }
+  return null;
+}
+
+const currentMob = mobOnPlayerSquare();
+if(currentMob) fight(currentMob);
+
+function fight(mob) {
+  mob.health = mob.health - 2;
+  player.health = 0;
+}
+
+const mobArr = [{
+  mob1 = {
     health: '40',
     attack: '5',
     x: 3,
     y: 5,
-};
-const mob2 = {
+  },
+  mob2 = {
     health: '40',
     attack: '5',
     x: 6,
     y: 2,
-};
-const mob3 = {
+  },
+  mob3 = {
     health: '40',
     attack: '5',
     x: 8,
     y: 7,
-};
-const mob4 = {
+  },
+  mob4 = {
     health: '40',
     attack: '5',
     x: 5,
     y: 9,
-};
-const mob5 = {
+  },
+  mob5 = {
     health: '40',
     attack: '5',
     x: 7,
     y: 13,
-};
-const mob6 = {
+  },
+  mob6 = {
     health: '40',
     attack: '5',
     x: 5,
     y: 23,
-};
-const mob7 = {
+  },
+  mob7 = {
     health: '40',
     attack: '5',
     x: 8,
     y: 20,
-};
-const mob8 = {
+  },
+  mob8 = {
     health: '40',
     attack: '5',
     x: 6,
     y: 16,
-};
-const mob9 = {
+  },
+  mob9 = {
     health: '40',
     attack: '5',
     x: 2,
     y: 21,
-};
-const mob10 = {
+  },
+  mob10 = {
     health: '40',
     attack: '5',
     x: 16,
     y: 25,
-};
-const mob11 = {
+  },
+  mob11 = {
     health: '40',
     attack: '5',
     x: 17,
     y: 17,
-};
-const mob12 = {
+  },
+  mob12 = {
     health: '40',
     attack: '5',
     x: 17,
     y: 11,
-};
-const mob13 = {
+  },
+  mob13 = {
     health: '40',
     attack: '5',
     x: 11,
     y: 6,
-};
-const mob14 = {
+  },
+  mob14 = {
     health: '40',
     attack: '5',
     x: 14,
     y: 1,
+  },
+}];
+
+ //####################### PLAYER #####################################//
+const playerStats = {
+  x:1,
+  y:1,
+  health: 100,
 };
 
   //#################### WASD MOVEMENT ###############################//
