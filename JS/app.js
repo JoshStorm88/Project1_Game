@@ -30,6 +30,9 @@ $(()=>{
   $('#map').on('mouseover','div',function(){
     $('#cell-address').val(`${$(this).data('x')}-${$(this).data('y')}`);
   });
+
+  // ######################### PLAYER CHARACTER ###################################//
+
   const playerChar = {health: 100, attack: 20};
 
   //###################GRID CELL CLASSES#########################//
@@ -72,6 +75,8 @@ $(()=>{
   //###############MOVEMENT,ITEMS & WEAPONS PICKUP FUNCTIONS##########################//
   function pickupWeapon(){
     $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('weapon').addClass('player');
+    $(playerChar.attack += 10);
+    console.log(`you pick up a rusty weapon from the ground! your weapon new weapon has ${playerChar.attack} damage!`)
   }
   function pickupHealth(){
     $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('healthPot').addClass('player');
@@ -100,8 +105,6 @@ $(()=>{
     {health: 100, attack: 5, x: 14, y: 1}
   ];
 
-  // const player = {health: 100, attack: 20, x: 1, y: 1};
-
   function mobOnPlayerSquare(){
     for(let i = 0; i < mobsArray.length; i++) {
       const mob = mobsArray[i];
@@ -115,15 +118,16 @@ $(()=>{
   function defend() {
     console.log(`before attack Player has ${playerChar.health} health`);
     playerChar.health -= (Math.floor(Math.random() * 5) + 5);
-    console.log(`PLAYER defends and has ${playerChar.health} health left`);
+    console.log(`PLAYER defends and has ${playerChar.health} health left!`);
+    console.log('');
   }
   function fight(mob) {
     console.log(`before attack MOB has ${mob.health} health`);
-    mob.health -= (Math.floor(Math.random() * 11) + 20 );
-    console.log(`after attack MOB has ${mob.health} health left`);
+    mob.health -= (`${playerChar.attack}`);
+    console.log(`after attack MOB has ${mob.health} health left!`);
+    console.log('');
+    // $(`${mob.health}`).removeClass('mob').addClass('path');
   }
-
-
 
   //#################### WASD MOVEMENT ###############################//
 
