@@ -30,7 +30,7 @@ $(()=>{
   $('#map').on('mouseover','div',function(){
     $('#cell-address').val(`${$(this).data('x')}-${$(this).data('y')}`);
   });
-  let playerChar = {};
+  let playerChar = {health: 100, attack: 20};
 
   //###################GRID CELL CLASSES#########################//
   $.each(gameGrid, (i, row) =>{
@@ -45,7 +45,8 @@ $(()=>{
         //Player//
       }if(cell === 2){
         $element.addClass('player');
-        playerChar = {x: i, y: j};
+        playerChar.x = i;
+        playerChar.y = j;
         gameGrid[playerChar.x][playerChar.y]= 0;
         //Mob//
       }if(cell === 3){
@@ -79,8 +80,8 @@ $(()=>{
     $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('path').addClass('player');
   }
 
-  //#################### MOBS LOCATION & INFO ######################################//
-  const mobs = [
+  //#################### COMBAT #####################################################//
+  const mobsArray = [
     {health: 20, attack: 5, x: 3, y: 5},
     {health: 20, attack: 5, x: 6, y: 2},
     {health: 20, attack: 5, x: 8, y: 7},
@@ -97,32 +98,24 @@ $(()=>{
     {health: 20, attack: 5, x: 14, y: 1}
   ];
 
-  const player = {
-    x: 1,
-    y: 1,
-    health: 100,
-    attack: 20
-  };
+  // const player = {health: 100, attack: 20, x: 1, y: 1};
 
   function mobOnPlayerSquare(){
-    for(let i = 0; i < mobs.length; i++) {
-      const mob = mobs[i];
-      if(mob.x === player.x && mob.y === player.y) {
+    for(let i = 0; i < mobsArray.length; i++) {
+      const mob = mobsArray[i];
+      if(mob.x === playerChar.x && mob.y === playerChar.y) {
+        console.log(`found mob at ${mob.x}, ${mob.y} with ${mob.health} health`);
         return mob;
       }
-
-      return null;
     }
+    return null;
   }
 
-  const currentMob = mobOnPlayerSquare();
-  if(currentMob) fight(currentMob);
-
   function fight(mob) {
-    mob.health = mob.health - (Math.floor(Math.random() * 11) + 20 );
-  
-    player.health = player.health - (Math.floor(Math.random() * 11) + 20 );
-}
+    console.log(`before fight, mob at ${mob.x}, ${mob.y} has ${mob.health}`);
+    mob.health -= (Math.floor(Math.random() * 11) + 20 );
+    console.log(`after fight, mob has ${mob.health}`);
+  }
   //#################### WASD MOVEMENT ###############################//
 
   function movePlayer(){
@@ -142,10 +135,9 @@ $(()=>{
             playerChar.x -= 1;
             pickupHealth();
           }if (gameGrid[playerChar.x-1][playerChar.y] === 3){
-            $('.player').removeClass('player').addClass('path');
             playerChar.x -= 1;
-            mobOnPlayerSquare();
-            fight();
+            const currentMob = mobOnPlayerSquare();
+            if(currentMob) fight(currentMob);
           }
           break;
         case 97:     //PLAYER LEFT //
@@ -162,9 +154,9 @@ $(()=>{
             playerChar.y -= 1;
             pickupHealth();
           }if (gameGrid[playerChar.x][playerChar.y-1] === 3){
-            $('.player').removeClass('player').addClass('path');
             playerChar.y -= 1;
             mobOnPlayerSquare();
+            fight();
           }
           break;
         case 115:     //PLAYER DOWN//
@@ -181,9 +173,9 @@ $(()=>{
             playerChar.x += 1;
             pickupHealth();
           }if (gameGrid[playerChar.x+1][playerChar.y] === 3){
-            $('.player').removeClass('player').addClass('path');
             playerChar.x += 1;
             mobOnPlayerSquare();
+            fight();
           }
           break;
         case 100:     //PLAYER RIGHT//
@@ -200,9 +192,9 @@ $(()=>{
             playerChar.y += 1;
             pickupHealth();
           }if (gameGrid[playerChar.x][playerChar.y+1] === 3){
-            $('.player').removeClass('player').addClass('path');
             playerChar.y += 1;
             mobOnPlayerSquare();
+            fight();
           }
           break;
       }
