@@ -30,7 +30,7 @@ $(()=>{
   $('#map').on('mouseover','div',function(){
     $('#cell-address').val(`${$(this).data('x')}-${$(this).data('y')}`);
   });
-  let playerChar = {health: 100, attack: 20};
+  const playerChar = {health: 100, attack: 20};
 
   //###################GRID CELL CLASSES#########################//
   $.each(gameGrid, (i, row) =>{
@@ -112,8 +112,9 @@ $(()=>{
     return null;
   }
 
-  function defend(playerChar) {
-    playerChar.health -= (Math.floor(Math.random() * 9) + 5);
+  function defend() {
+    console.log(`before attack Player has ${playerChar.health} health`);
+    playerChar.health -= (Math.floor(Math.random() * 5) + 5);
     console.log(`PLAYER defends and has ${playerChar.health} health left`);
   }
   function fight(mob) {
