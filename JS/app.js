@@ -1,7 +1,7 @@
 
 console.log('Game Begin');
 
-//###########################MAP##############################//
+//###########################GAME MAP##############################//
 const gameGrid = [
   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
   [1,2,0,0,0,0,0,0,0,4,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1],
@@ -25,7 +25,7 @@ const gameGrid = [
   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 ];
 
-//#######################X & Y LOCATIONS#############################//
+//#######################X & Y LOCATIONS IN CONSOLE#############################//
 $(()=>{
   $('#map').on('mouseover','div',function(){
     $('#cell-address').val(`${$(this).data('x')}-${$(this).data('y')}`);
@@ -78,12 +78,100 @@ $(()=>{
   function playerMovement(){
     $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('path').addClass('player');
   }
-  //#####################WASD MOVEMENT################################//
+
+  //#################### MOBS LOCATION & INFO ######################################//
+
+const mob1 = {
+    health: '40',
+    attack: '5',
+    x: 3,
+    y: 5,
+};
+const mob2 = {
+    health: '40',
+    attack: '5',
+    x: 6,
+    y: 2,
+};
+const mob3 = {
+    health: '40',
+    attack: '5',
+    x: 8,
+    y: 7,
+};
+const mob4 = {
+    health: '40',
+    attack: '5',
+    x: 5,
+    y: 9,
+};
+const mob5 = {
+    health: '40',
+    attack: '5',
+    x: 7,
+    y: 13,
+};
+const mob6 = {
+    health: '40',
+    attack: '5',
+    x: 5,
+    y: 23,
+};
+const mob7 = {
+    health: '40',
+    attack: '5',
+    x: 8,
+    y: 20,
+};
+const mob8 = {
+    health: '40',
+    attack: '5',
+    x: 6,
+    y: 16,
+};
+const mob9 = {
+    health: '40',
+    attack: '5',
+    x: 2,
+    y: 21,
+};
+const mob10 = {
+    health: '40',
+    attack: '5',
+    x: 16,
+    y: 25,
+};
+const mob11 = {
+    health: '40',
+    attack: '5',
+    x: 17,
+    y: 17,
+};
+const mob12 = {
+    health: '40',
+    attack: '5',
+    x: 17,
+    y: 11,
+};
+const mob13 = {
+    health: '40',
+    attack: '5',
+    x: 11,
+    y: 6,
+};
+const mob14 = {
+    health: '40',
+    attack: '5',
+    x: 14,
+    y: 1,
+};
+
+  //#################### WASD MOVEMENT ###############################//
 
   function movePlayer(){
     $(document).on('keypress', function(e){
       switch(e.which){
-        case 119:     // MOVE PLAYER UP//
+        case 119:     //PLAYER UP//
           if (gameGrid[playerChar.x-1][playerChar.y] === 0){
             $('.player').removeClass('player').addClass('path');
             playerChar.x -= 1;
@@ -98,7 +186,7 @@ $(()=>{
             pickupHealth();
           }
           break;
-        case 97:     // MOVE PLAYER LEFT //
+        case 97:     //PLAYER LEFT //
           if (gameGrid[playerChar.x][playerChar.y-1] === 0){
             $('.player').removeClass('player').addClass('path');
             playerChar.y -= 1;
@@ -113,7 +201,7 @@ $(()=>{
             pickupHealth();
           }
           break;
-        case 115:     // MOVE PLAYER DOWN//
+        case 115:     //PLAYER DOWN//
           if (gameGrid[playerChar.x+1][playerChar.y] === 0){
             $('.player').removeClass('player').addClass('path');
             playerChar.x += 1;
@@ -128,7 +216,7 @@ $(()=>{
             pickupHealth();
           }
           break;
-        case 100:     // MOVE PLAYER RIGHT//
+        case 100:     //PLAYER RIGHT//
           if (gameGrid[playerChar.x][playerChar.y+1] === 0){
             $('.player').removeClass('player').addClass('path');
             playerChar.y += 1;
