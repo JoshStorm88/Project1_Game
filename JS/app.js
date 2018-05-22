@@ -75,6 +75,8 @@ $(()=>{
   }
   function pickupHealth(){
     $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('healthPot').addClass('player');
+    $(playerChar.health += 20);
+    console.log(`You pick up a potion a gain 20 health, PLAYER now has ${playerChar.health} health left`);
   }
   function playerMovement(){
     $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('path').addClass('player');
@@ -82,20 +84,20 @@ $(()=>{
 
   //#################### COMBAT #####################################################//
   const mobsArray = [
-    {health: 20, attack: 5, x: 3, y: 5},
-    {health: 20, attack: 5, x: 6, y: 2},
-    {health: 20, attack: 5, x: 8, y: 7},
-    {health: 20, attack: 5, x: 5, y: 9},
-    {health: 20, attack: 5, x: 7, y: 13},
-    {health: 20, attack: 5, x: 5, y: 23},
-    {health: 20, attack: 5, x: 8, y: 20},
-    {health: 20, attack: 5, x: 6, y: 16},
-    {health: 20, attack: 5, x: 2, y: 21},
-    {health: 20, attack: 5, x: 16, y: 25},
-    {health: 20, attack: 5, x: 17, y: 17},
-    {health: 20, attack: 5, x: 17, y: 11},
-    {health: 20, attack: 5, x: 11, y: 6},
-    {health: 20, attack: 5, x: 14, y: 1}
+    {health: 100, attack: 5, x: 3, y: 5},
+    {health: 100, attack: 5, x: 6, y: 2},
+    {health: 100, attack: 5, x: 8, y: 7},
+    {health: 100, attack: 5, x: 5, y: 9},
+    {health: 100, attack: 5, x: 7, y: 13},
+    {health: 100, attack: 5, x: 5, y: 23},
+    {health: 100, attack: 5, x: 8, y: 20},
+    {health: 100, attack: 5, x: 6, y: 16},
+    {health: 100, attack: 5, x: 2, y: 21},
+    {health: 100, attack: 5, x: 16, y: 25},
+    {health: 100, attack: 5, x: 17, y: 17},
+    {health: 100, attack: 5, x: 17, y: 11},
+    {health: 100, attack: 5, x: 11, y: 6},
+    {health: 100, attack: 5, x: 14, y: 1}
   ];
 
   // const player = {health: 100, attack: 20, x: 1, y: 1};
@@ -104,18 +106,24 @@ $(()=>{
     for(let i = 0; i < mobsArray.length; i++) {
       const mob = mobsArray[i];
       if(mob.x === playerChar.x && mob.y === playerChar.y) {
-        console.log(`found mob at ${mob.x}, ${mob.y} with ${mob.health} health`);
         return mob;
       }
     }
     return null;
   }
 
-  function fight(mob) {
-    console.log(`before fight, mob at ${mob.x}, ${mob.y} has ${mob.health}`);
-    mob.health -= (Math.floor(Math.random() * 11) + 20 );
-    console.log(`after fight, mob has ${mob.health}`);
+  function defend(playerChar) {
+    playerChar.health -= (Math.floor(Math.random() * 9) + 5);
+    console.log(`PLAYER defends and has ${playerChar.health} health left`);
   }
+  function fight(mob) {
+    console.log(`before attack MOB has ${mob.health} health`);
+    mob.health -= (Math.floor(Math.random() * 11) + 20 );
+    console.log(`after attack MOB has ${mob.health} health left`);
+  }
+
+
+
   //#################### WASD MOVEMENT ###############################//
 
   function movePlayer(){
@@ -138,6 +146,7 @@ $(()=>{
             playerChar.x -= 1;
             const currentMob = mobOnPlayerSquare();
             if(currentMob) fight(currentMob);
+            if(currentMob) defend(currentMob);
           }
           break;
         case 97:     //PLAYER LEFT //
@@ -155,8 +164,9 @@ $(()=>{
             pickupHealth();
           }if (gameGrid[playerChar.x][playerChar.y-1] === 3){
             playerChar.y -= 1;
-            mobOnPlayerSquare();
-            fight();
+            const currentMob = mobOnPlayerSquare();
+            if(currentMob) fight(currentMob);
+            if(currentMob) defend(currentMob);
           }
           break;
         case 115:     //PLAYER DOWN//
@@ -174,8 +184,9 @@ $(()=>{
             pickupHealth();
           }if (gameGrid[playerChar.x+1][playerChar.y] === 3){
             playerChar.x += 1;
-            mobOnPlayerSquare();
-            fight();
+            const currentMob = mobOnPlayerSquare();
+            if(currentMob) fight(currentMob);
+            if(currentMob) defend(currentMob);
           }
           break;
         case 100:     //PLAYER RIGHT//
@@ -193,8 +204,9 @@ $(()=>{
             pickupHealth();
           }if (gameGrid[playerChar.x][playerChar.y+1] === 3){
             playerChar.y += 1;
-            mobOnPlayerSquare();
-            fight();
+            const currentMob = mobOnPlayerSquare();
+            if(currentMob) fight(currentMob);
+            if(currentMob) defend(currentMob);
           }
           break;
       }
