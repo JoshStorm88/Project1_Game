@@ -80,129 +80,49 @@ $(()=>{
   }
 
   //#################### MOBS LOCATION & INFO ######################################//
-  mobsArray = [
-    {health: 20, attack: 3, x: 1, y: 5},
-    {health: 20, attack: 3, x: 2, y: 1},
-    {health: 20, attack: 3, x: 10, y: 2}
+  const mobs = [
+    {health: 20, attack: 5, x: 3, y: 5},
+    {health: 20, attack: 5, x: 6, y: 2},
+    {health: 20, attack: 5, x: 8, y: 7},
+    {health: 20, attack: 5, x: 5, y: 9},
+    {health: 20, attack: 5, x: 7, y: 13},
+    {health: 20, attack: 5, x: 5, y: 23},
+    {health: 20, attack: 5, x: 8, y: 20},
+    {health: 20, attack: 5, x: 6, y: 16},
+    {health: 20, attack: 5, x: 2, y: 21},
+    {health: 20, attack: 5, x: 16, y: 25},
+    {health: 20, attack: 5, x: 17, y: 17},
+    {health: 20, attack: 5, x: 17, y: 11},
+    {health: 20, attack: 5, x: 11, y: 6},
+    {health: 20, attack: 5, x: 14, y: 1}
   ];
 
-  player = {
-    x: 2,
-    y: 1
-  }
+  const player = {
+    x: 1,
+    y: 1,
+    health: 100,
+    attack: 20
+  };
 
-function mobOnPlayerSquare() {
-  for(let i = 0; i < mobsArray.length; i++) {
-    const mob = mobs[i];
-    if(mob.x === player.x && mob.y === player.y) {
-      return mob;
+  function mobOnPlayerSquare(){
+    for(let i = 0; i < mobs.length; i++) {
+      const mob = mobs[i];
+      if(mob.x === player.x && mob.y === player.y) {
+        return mob;
+      }
+
+      return null;
     }
   }
-  return null;
+
+  const currentMob = mobOnPlayerSquare();
+  if(currentMob) fight(currentMob);
+
+  function fight(mob) {
+    mob.health = mob.health - (Math.floor(Math.random() * 11) + 20 );
+  
+    player.health = player.health - (Math.floor(Math.random() * 11) + 20 );
 }
-
-const currentMob = mobOnPlayerSquare();
-if(currentMob) fight(currentMob);
-
-function fight(mob) {
-  mob.health = mob.health - 2;
-  player.health = 0;
-}
-
-const mobArr = [{
-  mob1 = {
-    health: '40',
-    attack: '5',
-    x: 3,
-    y: 5,
-  },
-  mob2 = {
-    health: '40',
-    attack: '5',
-    x: 6,
-    y: 2,
-  },
-  mob3 = {
-    health: '40',
-    attack: '5',
-    x: 8,
-    y: 7,
-  },
-  mob4 = {
-    health: '40',
-    attack: '5',
-    x: 5,
-    y: 9,
-  },
-  mob5 = {
-    health: '40',
-    attack: '5',
-    x: 7,
-    y: 13,
-  },
-  mob6 = {
-    health: '40',
-    attack: '5',
-    x: 5,
-    y: 23,
-  },
-  mob7 = {
-    health: '40',
-    attack: '5',
-    x: 8,
-    y: 20,
-  },
-  mob8 = {
-    health: '40',
-    attack: '5',
-    x: 6,
-    y: 16,
-  },
-  mob9 = {
-    health: '40',
-    attack: '5',
-    x: 2,
-    y: 21,
-  },
-  mob10 = {
-    health: '40',
-    attack: '5',
-    x: 16,
-    y: 25,
-  },
-  mob11 = {
-    health: '40',
-    attack: '5',
-    x: 17,
-    y: 17,
-  },
-  mob12 = {
-    health: '40',
-    attack: '5',
-    x: 17,
-    y: 11,
-  },
-  mob13 = {
-    health: '40',
-    attack: '5',
-    x: 11,
-    y: 6,
-  },
-  mob14 = {
-    health: '40',
-    attack: '5',
-    x: 14,
-    y: 1,
-  },
-}];
-
- //####################### PLAYER #####################################//
-const playerStats = {
-  x:1,
-  y:1,
-  health: 100,
-};
-
   //#################### WASD MOVEMENT ###############################//
 
   function movePlayer(){
@@ -221,6 +141,11 @@ const playerStats = {
             $('.player').removeClass('player').addClass('path');
             playerChar.x -= 1;
             pickupHealth();
+          }if (gameGrid[playerChar.x-1][playerChar.y] === 3){
+            $('.player').removeClass('player').addClass('path');
+            playerChar.x -= 1;
+            mobOnPlayerSquare();
+            fight();
           }
           break;
         case 97:     //PLAYER LEFT //
@@ -236,6 +161,10 @@ const playerStats = {
             $('.player').removeClass('player').addClass('path');
             playerChar.y -= 1;
             pickupHealth();
+          }if (gameGrid[playerChar.x][playerChar.y-1] === 3){
+            $('.player').removeClass('player').addClass('path');
+            playerChar.y -= 1;
+            mobOnPlayerSquare();
           }
           break;
         case 115:     //PLAYER DOWN//
@@ -251,6 +180,10 @@ const playerStats = {
             $('.player').removeClass('player').addClass('path');
             playerChar.x += 1;
             pickupHealth();
+          }if (gameGrid[playerChar.x+1][playerChar.y] === 3){
+            $('.player').removeClass('player').addClass('path');
+            playerChar.x += 1;
+            mobOnPlayerSquare();
           }
           break;
         case 100:     //PLAYER RIGHT//
@@ -266,10 +199,15 @@ const playerStats = {
             $('.player').removeClass('player').addClass('path');
             playerChar.y += 1;
             pickupHealth();
+          }if (gameGrid[playerChar.x][playerChar.y+1] === 3){
+            $('.player').removeClass('player').addClass('path');
+            playerChar.y += 1;
+            mobOnPlayerSquare();
           }
           break;
       }
     });
   }
   movePlayer()
+
 });
