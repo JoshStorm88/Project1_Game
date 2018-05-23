@@ -73,30 +73,34 @@ $(()=>{
     });
   });
   //###############MOVEMENT,ITEMS & WEAPONS PICKUP FUNCTIONS & LOGS##########################//
+
   const weaponArray = [
-    {name: 'sword', x: 1 , y: 9},
-    {name: 'Mace'},
-    {name: 'Flail'},
-    {name: 'Pike'},
-    {name: 'Sheild'},
-    {name: 'Spear'},
-    {name: 'Stick'}
+    {name: 'Rusty Sword'},
+    {name: 'Chipped Mace'},
+    {name: 'Charred Flail'},
+    {name: 'Snapped Pike'},
+    {name: 'Razor Shield'},
+    {name: 'Warped Spear'},
+    {name: 'Big Stick'}
   ];
 
-  const wep = weaponArray[Math.floor(Math.random()*weaponArray.name)];
+
+  const weaponName = weaponArray[Math.floor(Math.random()*weaponArray.length)].name;
 
   function pickupWeapon(){
+    const weaponName = weaponArray[Math.floor(Math.random()*weaponArray.length)].name;
     $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('weapon').addClass('player');
     gameGrid[playerChar.x][playerChar.y] = 0;
     $(playerChar.attack += 10);
+    $heroWeapon.text(weaponName);
     $heroAttack.text('Attack' + playerChar.attack + 'DAMAGE');
-    $heroWeapon.text(wep);
     console.log(`you pick up a rusty weapon from the ground! your weapon new weapon has ${playerChar.attack} damage!`)
   }
   function pickupHealth(){
     $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('healthPot').addClass('player');
     gameGrid[playerChar.x][playerChar.y] = 0;
     $(playerChar.health += 20);
+    $heroHealth.text('Health' + playerChar.health);
     console.log(`You pick up a potion a gain 20 health, PLAYER now has ${playerChar.health} health left`);
   }
   function playerMovement(){
@@ -159,14 +163,15 @@ $(()=>{
     }
   }
 
+
   //############################# USER INTERFACE ##################################
   const $heroHealth = $('#heroHealth');
   const $heroAttack = $('#heroAttack');
   const $heroWeapon = $('#heroWeapon');
 
   $heroHealth.text('Health' + playerChar.health + '/100');
-  $heroAttack.text('Attack' + playerChar.attack + 'DPS');
-  $heroWeapon.text('Weapon' + weaponArray[0] + ' ');
+  $heroAttack.text('Attack' + ' ' + playerChar.attack + 'DPS');
+  $heroWeapon.text(weaponName);
 
   //#################### WASD MOVEMENT ###############################//
 

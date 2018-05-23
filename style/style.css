@@ -25,19 +25,19 @@ ul li {
   width: 150px;
   height: 150px;
   font-size: 30px;
-  border: silver solid 3px;
   background-color: black;
   color: white;
   text-align: center;
+  list-style-type: none;
 }
 
-.heroHealth {
+#heroHealth {
   color: lightgreen;
 }
-.heroWeapon {
+#heroWeapon {
   color: gold;
 }
-.heroAttack {
+#heroAttack {
   color: white;
 }
 
