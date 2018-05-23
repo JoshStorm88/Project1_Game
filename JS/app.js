@@ -72,7 +72,7 @@ $(()=>{
       $element.appendTo('#map');
     });
   });
-  //###############MOVEMENT,ITEMS & WEAPONS PICKUP FUNCTIONS##########################//
+  //###############MOVEMENT,ITEMS & WEAPONS PICKUP FUNCTIONS & LOGS##########################//
   function pickupWeapon(){
     $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('weapon').addClass('player');
     $(playerChar.attack += 10);
@@ -118,7 +118,7 @@ $(()=>{
   function defend() {
     console.log(`before attack Player has ${playerChar.health} health`);
     playerChar.health -= (Math.floor(Math.random() * 5) + 5);
-    console.log(`PLAYER defends and has ${playerChar.health} health left!`);
+    console.log(`MOB attacks & PLAYER defends, and has ${playerChar.health} health left!`);
     console.log('');
   }
   function fight(mob) {
@@ -126,7 +126,12 @@ $(()=>{
     mob.health -= (`${playerChar.attack}`);
     console.log(`after attack MOB has ${mob.health} health left!`);
     console.log('');
-    // $(`${mob.health}`).removeClass('mob').addClass('path');
+  }
+  function death(){
+    if (mob.health < 0){
+      ('mob').removeClass('mob').addClass('path');
+      console.log('mob dies');
+    }
   }
 
   //#################### WASD MOVEMENT ###############################//
@@ -152,6 +157,7 @@ $(()=>{
             const currentMob = mobOnPlayerSquare();
             if(currentMob) fight(currentMob);
             if(currentMob) defend(currentMob);
+            else if(currentMob) death(currentMob);
           }
           break;
         case 97:     //PLAYER LEFT //
@@ -172,6 +178,7 @@ $(()=>{
             const currentMob = mobOnPlayerSquare();
             if(currentMob) fight(currentMob);
             if(currentMob) defend(currentMob);
+            else if(currentMob) death(currentMob);
           }
           break;
         case 115:     //PLAYER DOWN//
@@ -192,6 +199,7 @@ $(()=>{
             const currentMob = mobOnPlayerSquare();
             if(currentMob) fight(currentMob);
             if(currentMob) defend(currentMob);
+            else if(currentMob) death(currentMob);
           }
           break;
         case 100:     //PLAYER RIGHT//
@@ -212,6 +220,7 @@ $(()=>{
             const currentMob = mobOnPlayerSquare();
             if(currentMob) fight(currentMob);
             if(currentMob) defend(currentMob);
+            else if(currentMob) death(currentMob);
           }
           break;
       }
