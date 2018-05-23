@@ -89,20 +89,20 @@ $(()=>{
 
   //#################### COMBAT #####################################################//
   const mobsArray = [
-    {health: 40, attack: 5, x: 3, y: 5},
-    {health: 40, attack: 5, x: 6, y: 2},
-    {health: 40, attack: 5, x: 8, y: 7},
-    {health: 40, attack: 5, x: 5, y: 9},
-    {health: 40, attack: 5, x: 7, y: 13},
-    {health: 40, attack: 5, x: 5, y: 23},
-    {health: 40, attack: 5, x: 8, y: 20},
-    {health: 40, attack: 5, x: 6, y: 16},
-    {health: 40, attack: 5, x: 2, y: 21},
-    {health: 40, attack: 5, x: 16, y: 25},
-    {health: 40, attack: 5, x: 17, y: 17},
-    {health: 40, attack: 5, x: 17, y: 11},
-    {health: 40, attack: 5, x: 11, y: 6},
-    {health: 40, attack: 5, x: 14, y: 1}
+    {health: 40, x: 3, y: 5},
+    {health: 40, x: 6, y: 2},
+    {health: 40, x: 8, y: 7},
+    {health: 40, x: 5, y: 9},
+    {health: 40, x: 7, y: 13},
+    {health: 40, x: 5, y: 23},
+    {health: 40, x: 8, y: 20},
+    {health: 40, x: 6, y: 16},
+    {health: 40, x: 2, y: 21},
+    {health: 40, x: 16, y: 25},
+    {health: 40, x: 17, y: 17},
+    {health: 40, x: 17, y: 11},
+    {health: 40, x: 11, y: 6},
+    {health: 40, x: 14, y: 1}
   ];
 
   function mobOnPlayerSquare(){
@@ -120,15 +120,15 @@ $(()=>{
     console.log(`before attack Player has ${playerChar.health} health`);
     playerChar.health -= 10 ;
     console.log(`MOB attacks !!! PLAYER defends, and has ${playerChar.health} health left!`);
-    console.log('');
     death(playerChar);
+    console.log('');
   }
   function fight(mob) {
     console.log(`before attack MOB has ${mob.health} health`);
     mob.health -= (`${playerChar.attack}`);
     console.log(`after attack MOB has ${mob.health} health left!`);
-    console.log('');
     death(mob);
+    console.log('');
   }
   function death(mob){
     if (mob.health === 0){
@@ -167,7 +167,7 @@ $(()=>{
             const currentMob = mobOnPlayerSquare();
             if(currentMob) fight(currentMob);
             if(currentMob) defend(currentMob);
-            if(currentMob) death(currentMob);
+            // if(currentMob) death(currentMob);
           }
           break;
         case 97:     //PLAYER LEFT //
