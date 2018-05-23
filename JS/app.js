@@ -33,7 +33,7 @@ $(()=>{
 
   // ######################### PLAYER CHARACTER ###################################//
 
-  const playerChar = {health: 1, attack: 20};
+  const playerChar = {health: 50, attack: 10};
 
   //###################GRID CELL CLASSES#########################//
   $.each(gameGrid, (i, row) =>{
@@ -134,7 +134,7 @@ $(()=>{
   }
   function defend() {
     playerChar.health -= (Math.floor(Math.random() * 9));
-    $heroHealth.text('Health' + playerChar.health + '/100');
+    $heroHealth.text('Health' + playerChar.health);
     death(playerChar);
   }
   function fight(mob) {

@@ -9,7 +9,7 @@
 
 }
 #map div{
-  border: 1px solid black;
+  border: ;
   width: 40px;
   height: 40px;
   float:left;
@@ -46,15 +46,42 @@ ul li {
 }
 
 
-#map div.path{background-color: grey;}
-#map div.wall{background-color: black;}
+#map div.path{
+  background-color: ;
+  background-repeat: no-repeat;
+  background-image: url("/Users/joshstorm/DEVELOPMENT/Project1_Game/images/Path.png");
+  background-size:contain;
+  background-color: ;
+}
+#map div.wall{
+  background-color: ;
+  background-repeat: no-repeat;
+  background-image: url("/Users/joshstorm/DEVELOPMENT/Project1_Game/images/Wall.png");
+  background-size:contain;
+  background-color: ;
+}
 #map div.player{
 background-repeat: no-repeat;
 background-image: url("/Users/joshstorm/DEVELOPMENT/Project1_Game/images/Hero sprite.png");
 background-size:contain;
-background-color: grey;
+background-color: ;
 }
-#map div.mob{background-color: red;}
-#map div.weapon{background-color: gold;}
-#map div.healthPot{background-color: lightgreen;}
+#map div.mob{
+  background-color: grey;
+  background-repeat: no-repeat;
+  background-image: url("/Users/joshstorm/DEVELOPMENT/Project1_Game/images/Monster.png");
+  background-size:contain;
+  background-color: grey;}
+#map div.weapon{
+  background-repeat: no-repeat;
+  background-image: url("/Users/joshstorm/DEVELOPMENT/Project1_Game/images/Weapon Chest.png");
+  background-color: grey;
+  background-size: contain;
+}
+#map div.healthPot{
+  background-color: grey;
+  background-repeat: no-repeat;
+  background-image: url("/Users/joshstorm/DEVELOPMENT/Project1_Game/images/Health Potion.png");
+  background-color: grey;
+  background-size: contain;}
 #map div.boss{background-color: darkred;}
