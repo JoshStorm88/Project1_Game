@@ -75,16 +75,14 @@ $(()=>{
   //###############MOVEMENT,ITEMS & WEAPONS PICKUP FUNCTIONS & LOGS##########################//
 
   const weaponArray = [
-    {name: 'Rusty Sword'},
+    {name: 'Rusty Greatsword'},
     {name: 'Chipped Mace'},
-    {name: 'Charred Flail'},
-    {name: 'Snapped Pike'},
-    {name: 'Razor Shield'},
+    {name: 'Twisted Flail'},
+    {name: 'Smoldering Pike'},
+    {name: 'Arrow Filled Shield'},
     {name: 'Warped Spear'},
     {name: 'Big Stick'}
   ];
-
-
   const weaponName = weaponArray[Math.floor(Math.random()*weaponArray.length)].name;
 
   function pickupWeapon(){
@@ -94,14 +92,14 @@ $(()=>{
     $(playerChar.attack += 10);
     $heroWeapon.text(weaponName);
     $heroAttack.text('Attack' + playerChar.attack + 'DAMAGE');
-    console.log(`you pick up a rusty weapon from the ground! your weapon new weapon has ${playerChar.attack} damage!`)
+    $heroLog.text(`you pick up a rusty weapon from the ground! your weapon new weapon has ${playerChar.attack} damage!`)
   }
   function pickupHealth(){
     $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('healthPot').addClass('player');
     gameGrid[playerChar.x][playerChar.y] = 0;
     $(playerChar.health += 20);
     $heroHealth.text('Health' + playerChar.health);
-    console.log(`You pick up a potion a gain 20 health, PLAYER now has ${playerChar.health} health left`);
+    $heroLog.text(`You pick up a potion a gain 20 health, PLAYER now has ${playerChar.health} health left`);
   }
   function playerMovement(){
     $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('path').addClass('player');
@@ -134,30 +132,25 @@ $(()=>{
     }
     return null;
   }
-
   function defend() {
-    console.log(`before attack Player has ${playerChar.health} health`);
     playerChar.health -= (Math.floor(Math.random() * 9));
     $heroHealth.text('Health' + playerChar.health + '/100');
-    // console.log(`MOB attacks !!! PLAYER defends, and has ${playerChar.health} health left!`);
     death(playerChar);
-    console.log('');
   }
   function fight(mob) {
-    console.log(`before attack MOB has ${mob.health} health`);
+    $heroLog.text(`before attack MOB has ${mob.health} health`);
     mob.health -= (`${playerChar.attack}`);
-    console.log(`after attack MOB has ${mob.health} health left!`);
+    $heroLog.text(`after attack MOB has ${mob.health} health left!`);
     death(mob);
-    console.log('');
   }
   function death(mob){
     if (mob.health < 1){
       $(`div[data-x='${mob.x}'][data-y='${mob.y}']`).removeClass('mob').addClass('path');
       mob.x -= 1;
-      console.log('MOB DIES');
+      $heroLog.text('MOB DIES');
     }if (playerChar.health < 1){
       $('playerChar').removeClass('playerChar').addClass('path');
-      console.log('PLAYER DIES');
+      $heroLog.text('PLAYER DIES');
       alert('GAME OVER');
       location.reload();
     }
@@ -168,10 +161,12 @@ $(()=>{
   const $heroHealth = $('#heroHealth');
   const $heroAttack = $('#heroAttack');
   const $heroWeapon = $('#heroWeapon');
+  const $heroLog = $('#heroLog');
 
-  $heroHealth.text('Health' + playerChar.health + '/100');
+  $heroHealth.text('Health' + ' ' + playerChar.health);
   $heroAttack.text('Attack' + ' ' + playerChar.attack + 'DPS');
   $heroWeapon.text(weaponName);
+  $heroLog.text('');
 
   //#################### WASD MOVEMENT ###############################//
 
@@ -196,7 +191,6 @@ $(()=>{
             const currentMob = mobOnPlayerSquare();
             if(currentMob) fight(currentMob);
             if(currentMob) defend(currentMob);
-            // if(currentMob) death(currentMob);
           }
           break;
         case 97:     //PLAYER LEFT //
