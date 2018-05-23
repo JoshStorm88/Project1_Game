@@ -1,5 +1,5 @@
 
-console.log('Game Begin');
+console.log('Fangthar begins his quest!');
 
 //###########################GAME MAP##############################//
 const gameGrid = [
@@ -33,7 +33,7 @@ $(()=>{
 
   // ######################### PLAYER CHARACTER ###################################//
 
-  const playerChar = {health: 100, attack: 20};
+  const playerChar = {health: 1, attack: 20};
 
   //###################GRID CELL CLASSES#########################//
   $.each(gameGrid, (i, row) =>{
@@ -79,9 +79,9 @@ $(()=>{
     {name: 'Chipped Mace'},
     {name: 'Twisted Flail'},
     {name: 'Smoldering Pike'},
-    {name: 'Arrow Filled Shield'},
-    {name: 'Warped Spear'},
-    {name: 'Big Stick'}
+    {name: 'Moldy Ham Hock of suffering'},
+    {name: 'Unicorn Horn'},
+    {name: 'Big Pointy Stick'}
   ];
   const weaponName = weaponArray[Math.floor(Math.random()*weaponArray.length)].name;
 
@@ -92,14 +92,14 @@ $(()=>{
     $(playerChar.attack += 10);
     $heroWeapon.text(weaponName);
     $heroAttack.text('Attack' + playerChar.attack + 'DAMAGE');
-    $heroLog.text(`you pick up a rusty weapon from the ground! your weapon new weapon has ${playerChar.attack} damage!`)
+    $heroLog.text(`Fangthar picks up a rusty weapon from the ground! Fangthars new weapon has ${playerChar.attack} damage!`);
   }
   function pickupHealth(){
     $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('healthPot').addClass('player');
     gameGrid[playerChar.x][playerChar.y] = 0;
     $(playerChar.health += 20);
     $heroHealth.text('Health' + playerChar.health);
-    $heroLog.text(`You pick up a potion a gain 20 health, PLAYER now has ${playerChar.health} health left`);
+    $heroLog.text(`Fangthar picks up a healing potion, gulps it down and feels it knit his wounds back together! he gains 20 health, Fangthar now has ${playerChar.health} health left`);
   }
   function playerMovement(){
     $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('path').addClass('player');
@@ -138,24 +138,22 @@ $(()=>{
     death(playerChar);
   }
   function fight(mob) {
-    $heroLog.text(`before attack MOB has ${mob.health} health`);
     mob.health -= (`${playerChar.attack}`);
-    $heroLog.text(`after attack MOB has ${mob.health} health left!`);
+    $heroLog.text(`Fangthar attacks with furious rage! Mob has ${mob.health} health left!`);
     death(mob);
   }
   function death(mob){
     if (mob.health < 1){
       $(`div[data-x='${mob.x}'][data-y='${mob.y}']`).removeClass('mob').addClass('path');
       mob.x -= 1;
-      $heroLog.text('MOB DIES');
+      $heroLog.text('Mob dies!');
     }if (playerChar.health < 1){
       $('playerChar').removeClass('playerChar').addClass('path');
       $heroLog.text('PLAYER DIES');
-      alert('GAME OVER');
+      alert('Fanthar is overwelmed by the hordes of darkness! Reaching out he grabs hold of his amulet of time warping and travels back in time to when he first entered the dungeon!');
       location.reload();
     }
   }
-
 
   //############################# USER INTERFACE ##################################
   const $heroHealth = $('#heroHealth');
@@ -259,5 +257,5 @@ $(()=>{
       }
     });
   }
-  movePlayer()
+  movePlayer();
 });

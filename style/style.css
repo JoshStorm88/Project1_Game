@@ -24,21 +24,25 @@
 ul li {
   width: 150px;
   height: 150px;
-  font-size: 30px;
+  font-size: 20px;
   background-color: black;
   color: white;
   text-align: center;
   list-style-type: none;
+  font-family: 'VT323', monospace;
 }
 
 #heroHealth {
   color: lightgreen;
+  font-family: 'VT323', monospace;
 }
 #heroWeapon {
   color: gold;
+  font-family: 'VT323', monospace;
 }
 #heroAttack {
   color: white;
+  font-family: 'VT323', monospace;
 }
 
 
