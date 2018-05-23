@@ -33,7 +33,7 @@ $(()=>{
 
   // ######################### PLAYER CHARACTER ###################################//
 
-  const playerChar = {health: 20, attack: 20};
+  const playerChar = {health: 100, attack: 20};
 
   //###################GRID CELL CLASSES#########################//
   $.each(gameGrid, (i, row) =>{
@@ -73,13 +73,29 @@ $(()=>{
     });
   });
   //###############MOVEMENT,ITEMS & WEAPONS PICKUP FUNCTIONS & LOGS##########################//
+  const weaponArray = [
+    {name: 'sword', x: 1 , y: 9},
+    {name: 'Mace'},
+    {name: 'Flail'},
+    {name: 'Pike'},
+    {name: 'Sheild'},
+    {name: 'Spear'},
+    {name: 'Stick'}
+  ];
+
+  const wep = weaponArray[Math.floor(Math.random()*weaponArray.name)];
+
   function pickupWeapon(){
     $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('weapon').addClass('player');
+    gameGrid[playerChar.x][playerChar.y] = 0;
     $(playerChar.attack += 10);
+    $heroAttack.text('Attack' + playerChar.attack + 'DAMAGE');
+    $heroWeapon.text(wep);
     console.log(`you pick up a rusty weapon from the ground! your weapon new weapon has ${playerChar.attack} damage!`)
   }
   function pickupHealth(){
     $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('healthPot').addClass('player');
+    gameGrid[playerChar.x][playerChar.y] = 0;
     $(playerChar.health += 20);
     console.log(`You pick up a potion a gain 20 health, PLAYER now has ${playerChar.health} health left`);
   }
@@ -89,19 +105,19 @@ $(()=>{
 
   //#################### COMBAT #####################################################//
   const mobsArray = [
-    {health: 40, x: 3, y: 5},
-    {health: 40, x: 6, y: 2},
+    {health: 20, x: 3, y: 5},
+    {health: 28, x: 6, y: 2},
     {health: 40, x: 8, y: 7},
-    {health: 40, x: 5, y: 9},
+    {health: 50, x: 5, y: 9},
     {health: 40, x: 7, y: 13},
-    {health: 40, x: 5, y: 23},
+    {health: 70, x: 5, y: 23},
     {health: 40, x: 8, y: 20},
-    {health: 40, x: 6, y: 16},
+    {health: 75, x: 6, y: 16},
     {health: 40, x: 2, y: 21},
     {health: 40, x: 16, y: 25},
-    {health: 40, x: 17, y: 17},
+    {health: 100, x: 17, y: 17},
     {health: 40, x: 17, y: 11},
-    {health: 40, x: 11, y: 6},
+    {health: 20, x: 11, y: 6},
     {health: 40, x: 14, y: 1}
   ];
 
@@ -114,12 +130,12 @@ $(()=>{
     }
     return null;
   }
-// (Math.floor(Math.random() * 5) +
 
   function defend() {
     console.log(`before attack Player has ${playerChar.health} health`);
-    playerChar.health -= 10 ;
-    console.log(`MOB attacks !!! PLAYER defends, and has ${playerChar.health} health left!`);
+    playerChar.health -= (Math.floor(Math.random() * 9));
+    $heroHealth.text('Health' + playerChar.health + '/100');
+    // console.log(`MOB attacks !!! PLAYER defends, and has ${playerChar.health} health left!`);
     death(playerChar);
     console.log('');
   }
@@ -131,10 +147,11 @@ $(()=>{
     console.log('');
   }
   function death(mob){
-    if (mob.health === 0){
-      $('mob').removeClass('mob').addClass('path');
+    if (mob.health < 1){
+      $(`div[data-x='${mob.x}'][data-y='${mob.y}']`).removeClass('mob').addClass('path');
+      mob.x -= 1;
       console.log('MOB DIES');
-    }if (playerChar.health === 0){
+    }if (playerChar.health < 1){
       $('playerChar').removeClass('playerChar').addClass('path');
       console.log('PLAYER DIES');
       alert('GAME OVER');
@@ -142,7 +159,14 @@ $(()=>{
     }
   }
 
+  //############################# USER INTERFACE ##################################
+  const $heroHealth = $('#heroHealth');
+  const $heroAttack = $('#heroAttack');
+  const $heroWeapon = $('#heroWeapon');
 
+  $heroHealth.text('Health' + playerChar.health + '/100');
+  $heroAttack.text('Attack' + playerChar.attack + 'DPS');
+  $heroWeapon.text('Weapon' + weaponArray[0] + ' ');
 
   //#################### WASD MOVEMENT ###############################//
 
@@ -237,5 +261,4 @@ $(()=>{
     });
   }
   movePlayer()
-
 });
