@@ -2,9 +2,29 @@
 *{
   box-sizing: border-box;
   float: left;
-  background-color: black;
-
 }
+#fangtharInfo, #fangthar{
+  width: 80px;
+  height: 80px;
+}
+
+#healthInfo, #weaponInfo{
+  width: 60px;
+  height: 60px;
+  float: left;
+}
+#infosize p{
+  font-size: 20px;
+  padding: 10px;
+}
+
+#intro{
+  background-color: black;
+}
+#gameScreen{
+  background-image: url("/Users/joshstorm/DEVELOPMENT/Project1_Game/images/Path.png");
+}
+
 #map {
   width: 1120px;
   height: 1120px;
@@ -16,13 +36,13 @@
   width: 40px;
   height: 40px;
   float:left;
-  background-image: url("/Users/joshstorm/DEVELOPMENT/Project1_Game/images/Path.png")
 }
 
 #userInterface {
   background-color: black;
   height: 800px;
   width: 290px;
+
 }
 p {
   color: white;
@@ -31,7 +51,7 @@ p {
   font-size: 40px;
 }
 
-#click {
+#begin, #click {
   color: goldenRod;
   float: right;
 

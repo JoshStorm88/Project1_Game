@@ -255,8 +255,11 @@ $(()=>{
   function setup(){
     $('#gameScreen').hide();
     $('#intro').click(function () {
-      $('#intro').hide();
+      $('#intro').fadeOut();
       $('#gameScreen').show();
+      const mainTheme = document.querySelector('.theme');
+      mainTheme.src = './sounds/8bit_Dungeon_Level_Video_Classica.wav';
+      mainTheme.play();
     });
   }
 
