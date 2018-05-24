@@ -39,6 +39,9 @@ $(()=>{
         //Boss//
       }if(cell === 6){
         $element.addClass('boss');
+        //death//
+      }if(cell === 8){
+        $element.addClass('monsterSkeleton');
       }
       $element.attr('data-x',i);
       $element.attr('data-y',j);
@@ -66,7 +69,7 @@ $(()=>{
     $(`div[data-x='${playerChar.x}'][data-y='${playerChar.y}']`).removeClass('weapon').addClass('player');
     gameGrid[playerChar.x][playerChar.y] = 0;
     weaponAudio.play();
-    $(playerChar.attack += 10);
+    $(playerChar.attack += (Math.floor(Math.random() * 20)));
     $heroWeapon.text(weaponName);
     $heroAttack.text('Attack' + playerChar.attack + 'DAMAGE');
     $heroLog.text(`The chest opens, revealing a ${weaponName}! Fangthar now attacks with ${playerChar.attack} damage!`);
@@ -85,20 +88,20 @@ $(()=>{
 
   //#################### COMBAT #####################################################//
   const mobsArray = [
-    {health: 50, attack: 1, x: 3, y: 5},
-    {health: 50, attack: 1, x: 6, y: 2},
-    {health: 60, attack: 1, x: 8, y: 7},
-    {health: 50, attack: 1, x: 5, y: 9},
-    {health: 50, attack: 1, x: 7, y: 13},
-    {health: 50, attack: 1, x: 5, y: 23},
-    {health: 50, attack: 1, x: 8, y: 20},
-    {health: 50, attack: 1, x: 6, y: 16},
-    {health: 50, attack: 1, x: 2, y: 21},
-    {health: 50, attack: 1, x: 16, y: 25},
-    {health: 200, attack: 1, x: 17, y: 17},
-    {health: 150, attack: 1, x: 17, y: 11},
-    {health: 200, attack: 1, x: 11, y: 6},
-    {health: 600, attack: 1, x: 14, y: 1}
+    {health: 1, x: 3, y: 5},
+    {health: 1, x: 6, y: 2},
+    {health: 1, x: 8, y: 7},
+    {health: 1, x: 5, y: 9},
+    {health: 1, x: 7, y: 13},
+    {health: 1, x: 5, y: 23},
+    {health: 1, x: 8, y: 20},
+    {health: 1, x: 6, y: 17},
+    {health: 1, x: 2, y: 21},
+    {health: 1, x: 16, y: 25},
+    {health: 1, x: 17, y: 17},
+    {health: 1, x: 17, y: 10},
+    {health: 1, x: 11, y: 6},
+    {health: 1, x: 14, y: 1}
   ];
 
 
@@ -117,7 +120,7 @@ $(()=>{
         return mob;
       }
     }
-    return null;
+    null;
   }
   function defend() {
     playerChar.health -= (Math.floor(Math.random() * 12));
@@ -127,17 +130,19 @@ $(()=>{
   function fight(mob) {
     mob.health -= (`${playerChar.attack}`);
     combatAudio.play();
-    $heroLog.text(`Fangthar attacks with furious rage! Mob has ${mob.health} health left!`);
+    $heroLog.text(`Fangthar attacks with furious rage! Monster has ${mob.health} health left!`);
     death(mob);
   }
   function death(mob){
     if (mob.health < 1){
-      $(`div[data-x='${mob.x}'][data-y='${mob.y}']`).removeClass('mob').addClass('path');
-      mob.x -= 1;
-      $heroLog.text('Mob dies!');
+      $(`div[data-x='${mob.x}'][data-y='${mob.y}']`).removeClass('mob').addClass('monsterSkeleton');
+      const index = mobsArray.indexOf(mob);
+      $heroLog.text('Monster dies!');
+      console.log(mobsArray[index]);
+      mobsArray.splice(index, 1);
+      console.log(mobsArray);
       checkWin();
     }if (playerChar.health < 1){
-      $('playerChar').removeClass('playerChar').addClass('path');
       $heroLog.text('PLAYER DIES');
       alert('Fanthar is overwelmed by the hordes of darkness! Reaching out he grabs hold of his amulet of time warping and travels back in time to when he first entered the dungeon!');
       location.reload();
@@ -165,20 +170,24 @@ $(()=>{
             $('.player').removeClass('player').addClass('path');
             playerChar.x -= 1;
             playerMovement();
-          }if (gameGrid[playerChar.x-1][playerChar.y] === 4){
+          } else if (gameGrid[playerChar.x-1][playerChar.y] === 4){
             $('.player').removeClass('player').addClass('path');
             playerChar.x -= 1;
             pickupWeapon();
-          }if (gameGrid[playerChar.x-1][playerChar.y] === 5){
+          } else if (gameGrid[playerChar.x-1][playerChar.y] === 5){
             $('.player').removeClass('player').addClass('path');
             playerChar.x -= 1;
-            pickupHealth()
-            ;
+            pickupHealth();
           }if (gameGrid[playerChar.x-1][playerChar.y] === 3){
             playerChar.x -= 1;
             const currentMob = mobOnPlayerSquare();
-            if(currentMob) fight(currentMob);
-            if(currentMob) defend(currentMob);
+            if(currentMob) {
+              fight(currentMob);
+              defend(currentMob);
+              death(currentMob);
+            } else {
+              playerChar.x ++;
+            }
           }
           break;
         case 97:     //PLAYER LEFT //
@@ -194,13 +203,16 @@ $(()=>{
             $('.player').removeClass('player').addClass('path');
             playerChar.y -= 1;
             pickupHealth();
-
           }if (gameGrid[playerChar.x][playerChar.y-1] === 3){
             playerChar.y -= 1;
             const currentMob = mobOnPlayerSquare();
-            if(currentMob) fight(currentMob);
-            if(currentMob) defend(currentMob);
-            else if(currentMob) death(currentMob);
+            if(currentMob) {
+              fight(currentMob);
+              defend(currentMob);
+              death(currentMob);
+            } else {
+              playerChar.y ++;
+            }
           }
           break;
         case 115:     //PLAYER DOWN//
@@ -219,9 +231,13 @@ $(()=>{
           }if (gameGrid[playerChar.x+1][playerChar.y] === 3){
             playerChar.x += 1;
             const currentMob = mobOnPlayerSquare();
-            if(currentMob) fight(currentMob);
-            if(currentMob) defend(currentMob);
-            else if(currentMob) death(currentMob);
+            if(currentMob) {
+              fight(currentMob);
+              defend(currentMob);
+              death(currentMob);
+            } else {
+              playerChar.x --;
+            }
           }
           break;
         case 100:     //PLAYER RIGHT//
@@ -240,9 +256,13 @@ $(()=>{
           }if (gameGrid[playerChar.x][playerChar.y+1] === 3){
             playerChar.y += 1;
             const currentMob = mobOnPlayerSquare();
-            if(currentMob) fight(currentMob);
-            if(currentMob) defend(currentMob);
-            else if(currentMob) death(currentMob);
+            if(currentMob) {
+              fight(currentMob);
+              defend(currentMob);
+              death(currentMob);
+            } else {
+              playerChar.y --;
+            }
           }
           break;
       }

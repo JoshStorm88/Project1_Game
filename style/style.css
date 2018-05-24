@@ -1,7 +1,7 @@
-
 *{
   box-sizing: border-box;
   float: left;
+
 }
 #fangtharInfo, #fangthar{
   width: 80px;
@@ -12,6 +12,8 @@
   width: 60px;
   height: 60px;
   float: left;
+  margin-left: 10px;
+
 }
 #infosize p{
   font-size: 20px;
@@ -91,17 +93,18 @@ ul li {
 #map div.path{
   background-color: ;
   background-repeat: no-repeat;
-  background-image: url("/Users/joshstorm/DEVELOPMENT/Project1_Game/images/Path.png");
+  background-image: url("/Users/joshstorm/DEVELOPMENT/Project1_Game/images/path.png");
   background-size:contain;
   background-color: ;
 }
 #map div.wall{
   background-color: ;
   background-repeat: no-repeat;
-  background-image: url("/Users/joshstorm/DEVELOPMENT/Project1_Game/images/Wall.png");
+  background-image: url("/Users/joshstorm/DEVELOPMENT/Project1_Game/images/wall.png");
   background-size:contain;
   background-color: ;
 }
+
 #map div.player{
 background-repeat: no-repeat;
 background-image: url("/Users/joshstorm/DEVELOPMENT/Project1_Game/images/Hero sprite.png");
@@ -111,7 +114,13 @@ background-color: ;
 #map div.mob{
   background-color: ;
   background-repeat: no-repeat;
-  background-image: url("/Users/joshstorm/DEVELOPMENT/Project1_Game/images/Monster.png");
+  background-image: url("/Users/joshstorm/DEVELOPMENT/Project1_Game/images/Monster2.png");
+  background-size:contain;
+}
+#map div.monsterSkeleton{
+  background-color: ;
+  background-repeat: no-repeat;
+  background-image: url("/Users/joshstorm/DEVELOPMENT/Project1_Game/images/monster_Skeleton.png");
   background-size:contain;
 }
 #map div.weapon{
@@ -130,5 +139,5 @@ background-color: ;
   background-repeat: no-repeat;
   background-image: url("/Users/joshstorm/DEVELOPMENT/Project1_Game/images/Boss.png");
   background-size: contain;
-  border-radius: 50%;
+  border-radius:
 }
