@@ -24,11 +24,23 @@
   height: 800px;
   width: 290px;
 }
+p {
+  color: white;
+  font-family: 'VT323', monospace;
+  text-align: center;
+  font-size: 40px;
+}
+
+#click {
+  color: goldenRod;
+  float: right;
+
+}
 
 ul li {
   width: 150px;
   height: 150px;
-  font-size: 20px;
+  font-size: 30px;
   background-color: black;
   color: white;
   text-align: center;
