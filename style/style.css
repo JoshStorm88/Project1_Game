@@ -56,10 +56,16 @@ p {
   float: right;
 
 }
+#heroLog, li {
+  font-size: 25px;
+  text-align: center;
+  width: 200px;
+  height: 200px;
+}
 
 ul li {
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 100px;
   font-size: 30px;
   background-color: black;
   color: white;
@@ -101,7 +107,6 @@ background-repeat: no-repeat;
 background-image: url("/Users/joshstorm/DEVELOPMENT/Project1_Game/images/Hero sprite.png");
 background-size:contain;
 background-color: ;
-border-radius: 50%;
 }
 #map div.mob{
   background-color: ;
