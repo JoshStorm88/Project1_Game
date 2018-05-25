@@ -15,29 +15,30 @@ For our first project, we were given a week to build an in-browser game using HT
 ---
 # Overveiw of Fangthar's Adventure
 <p align="center"><img src="https://i.imgur.com/FHrOnu5.png" width="700"></p>
-###### The Game begins with an intro screen, which gives some flavour text to set scene and it doubles as instructions for the game too.
+The Game begins with an intro screen, which gives some flavour text to set scene and it doubles as instructions for the game too.
 <p align="center"><img src="https://i.imgur.com/83AHsLb.png" width="700"></p>
-###### Fangthar's Adevnture is set on a grid based level, hard coded into the JS file by myself. The player, monsters and items are set in place, coded into a set grid layout, allowing for more additions to the level in future.
+Fangthar's Adevnture is set on a grid based level, hard coded into the JS file by myself. The player, monsters and items are set in place, coded into a set grid layout, allowing for more additions to the level in future.</p>
 <p align="center"><img src="https://i.imgur.com/XWk0iTP.png" width="700"></p>
-###### As the game progresses the player will pickup health potions and weapons to become more powerful and stay alive. Choosing which monster to attack based on your remaining health and current attack power was the aim for all of these collective features.
+As the game progresses the player will pickup health potions and weapons to become more powerful and stay alive. Choosing which monster to attack based on your remaining health and current attack power was the aim for all of these collective features.
 
 <p align="center"><img src="https://i.imgur.com/ydSQ2Wf.png" width="700"></p>
- ###### Upon killing all of the monsters in the level I set an alert to appear, letting the player know that he/she has finished the game. I used some flavour text to try to keep the player immersed in the game.
-<p align="center"><img src="https://i.imgur.com/hSgXi72.png" width="700"></p>
- Level two adds enemies to the map, as well as more items. This gives the player a first experience of combat within the game. The map size is increased as well.
-<p align="center"><img src="https://i.imgur.com/Ydcw1zZ.png" width="700"></p>
+ Upon killing all of the monsters in the level I have  set an alert to appear, letting the player know that he/she has finished the game. I used some flavour text to try to keep the player immersed in the game.
+<p align="center"><img src="https://i.imgur.com/P0XA9Zm.png" width="700"></p>
+ IF the player should reach 0 health while attacking or going into combat with one of the monsters, then an alert comes up with some flavour text telling the player that they have failed, I set the page to reload after the user had finished reading and clicked the ok button.
+
+<br>
+
+<br>
+<h2>Things I would like to add to the game:</h2>
+ <p>I would like to find a way to create procedurally generated random maps, with random item and monster locations.</p>
+ <p>I would like to have at least 1 or 2 more enemy variants to make the game a little bit more fun and also style wise to look better.</p>
+ <p>In the future I would like to design sprites sheets specifically for the game to allow me to use more textures, as well as some animation in both the player and the
+monsters.</p>
+<p>3 Boss battles ranging from easy to hard, I wanted this feature in the game however It did not make it into the final product. The Boss images in the game are all that remain of the idea.</p>
 
 ---
- The Win Logic requires the player to reach the final door without being reduced to 0 hitpoints on the way.
- The players score is calculated using a formula that takes into account the time taken, steps taken, enemies killed and coins collected.
- Once the final level is beaten, the player is presented with their final score and can restart the entire game and try to beat it. The highscore is displayed above the game board.
----
-# Planned Features
- I would like to find a way to procedurally generate maps. This was a goal of mine early during development that I had to abandon due to time constraints, but it is something I would love to revisit.
- Adding more enemy types and item definitions would be another great option.
- Finally I would like to improve on the design to make it fully scaleable to any screen size and to integrate the Arcade Machine Background into the game further.
----
-# In Review
-I am very pleased with the final product. While there are several small design changes I would like to make, I believe that I captured the feeling of Roguelike games quite well.
-The game framework is robust and adding new item or enemy definitions is simply a matter of updating the definition list in the libraries.js file.
-Similarly a new map can easily be created using the Map Maker on a blank new level.
+# Final Thoughts
+
+I found this project to be challenging and incredibly frustrating at times, however it was incredibly rewarding to get everything to work the way i envisioned it. To take the concept of the game from the pages of my notebook to being a fully functional game which has been deployed is a great feeling.
+I am overall happy with how the game turned out, I would of liked to have bosses in the game, however i ran out of time and I wanted to get the game finished in order to style and polish the project.
+I shall be working on the game in my spare time and In doing so I hope to watch it grow with my abilities as a Developer.
