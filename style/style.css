@@ -24,7 +24,7 @@
   background-color: black;
 }
 #gameScreen{
-  background-image: url("/images/Path.png");
+  background-image: url("../images/Path.png");
 }
 
 #map {
@@ -92,42 +92,42 @@ ul li {
 
 #map div.path{
   background-repeat: no-repeat;
-  background-image: url("/images/path.png");
+  background-image: url("../images/path.png");
   background-size: contain;
 }
 #map div.wall{
   background-repeat: no-repeat;
-  background-image: url("/images/wall.png");
+  background-image: url("../images/wall.png");
   background-size:contain;
 }
 
 #map div.player{
 background-repeat: no-repeat;
-background-image: url("/images/Hero sprite.png");
+background-image: url("../images/Hero sprite.png");
 background-size:contain;
 background-color: ;
 }
 #map div.mob{
   background-repeat: no-repeat;
-  background-image: url("/images/Monster2.png");
+  background-image: url("../images/Monster2.png");
   background-size:contain;
 }
 #map div.monsterSkeleton{
   background-repeat: no-repeat;
-  background-image: url("/images/monster_Skeleton.png");
+  background-image: url("../images/monster_skeleton.png");
   background-size:contain;
 }
 #map div.weapon{
   background-repeat: no-repeat;
-  background-image: url("/images/Weapon Chest.png");
+  background-image: url("../images/Weapon Chest.png");
   background-size: contain;
 }
 #map div.healthPot{
   background-repeat: no-repeat;
-  background-image: url("/images/Health Potion.png");
+  background-image: url("../images/Health Potion.png");
   background-size: contain;}
 #map div.boss{
   background-repeat: no-repeat;
-  background-image: url("/images/Boss.png");
+  background-image: url("../images/Boss.png");
   background-size: contain;
 }
