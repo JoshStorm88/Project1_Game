@@ -88,20 +88,20 @@ $(()=>{
 
   //#################### COMBAT #####################################################//
   const mobsArray = [
-    {health: 1, x: 3, y: 5},
-    {health: 1, x: 6, y: 2},
-    {health: 1, x: 8, y: 7},
-    {health: 1, x: 5, y: 9},
-    {health: 1, x: 7, y: 13},
-    {health: 1, x: 5, y: 23},
-    {health: 1, x: 8, y: 20},
-    {health: 1, x: 6, y: 17},
-    {health: 1, x: 2, y: 21},
-    {health: 1, x: 16, y: 25},
-    {health: 1, x: 17, y: 17},
-    {health: 1, x: 17, y: 10},
-    {health: 1, x: 11, y: 6},
-    {health: 1, x: 14, y: 1}
+    {health: 10, x: 3, y: 5},
+    {health: 10, x: 6, y: 2},
+    {health: 10, x: 8, y: 7},
+    {health: 10, x: 5, y: 9},
+    {health: 10, x: 7, y: 13},
+    {health: 10, x: 5, y: 23},
+    {health: 10, x: 8, y: 20},
+    {health: 10, x: 6, y: 17},
+    {health: 10, x: 2, y: 21},
+    {health: 10, x: 16, y: 25},
+    {health: 10, x: 17, y: 17},
+    {health: 10, x: 17, y: 10},
+    {health: 10, x: 11, y: 6},
+    {health: 10, x: 14, y: 1}
   ];
 
 
@@ -138,9 +138,9 @@ $(()=>{
       $(`div[data-x='${mob.x}'][data-y='${mob.y}']`).removeClass('mob').addClass('monsterSkeleton');
       const index = mobsArray.indexOf(mob);
       $heroLog.text('Monster dies!');
-      console.log(mobsArray[index]);
-      mobsArray.splice(index, 1);
-      console.log(mobsArray);
+      // console.log(mobsArray[index]);
+      // mobsArray.splice(index, 1);
+      // console.log(mobsArray);
       checkWin();
     }if (playerChar.health < 1){
       $heroLog.text('PLAYER DIES');
