@@ -56,7 +56,6 @@ p {
 #begin, #click {
   color: goldenRod;
   float: right;
-
 }
 #heroLog, li {
   font-size: 25px;
@@ -98,24 +97,23 @@ ul li {
 #map div.wall{
   background-repeat: no-repeat;
   background-image: url("../images/wall.png");
-  background-size:contain;
+  background-size: contain;
 }
 
 #map div.player{
 background-repeat: no-repeat;
 background-image: url("../images/Hero sprite.png");
-background-size:contain;
-background-color: ;
+background-size: contain;
 }
 #map div.mob{
   background-repeat: no-repeat;
   background-image: url("../images/Monster2.png");
-  background-size:contain;
+  background-size: contain;
 }
 #map div.monsterSkeleton{
   background-repeat: no-repeat;
   background-image: url("../images/monster_skeleton.png");
-  background-size:contain;
+  background-size: contain;
 }
 #map div.weapon{
   background-repeat: no-repeat;
