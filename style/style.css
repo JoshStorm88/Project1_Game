@@ -91,18 +91,14 @@ ul li {
 
 
 #map div.path{
-  background-color: ;
   background-repeat: no-repeat;
   background-image: url("/Users/joshstorm/DEVELOPMENT/Project1_Game/images/path.png");
-  background-size:contain;
-  background-color: ;
+  background-size: contain;
 }
 #map div.wall{
-  background-color: ;
   background-repeat: no-repeat;
   background-image: url("/Users/joshstorm/DEVELOPMENT/Project1_Game/images/wall.png");
   background-size:contain;
-  background-color: ;
 }
 
 #map div.player{
@@ -112,13 +108,11 @@ background-size:contain;
 background-color: ;
 }
 #map div.mob{
-  background-color: ;
   background-repeat: no-repeat;
   background-image: url("/Users/joshstorm/DEVELOPMENT/Project1_Game/images/Monster2.png");
   background-size:contain;
 }
 #map div.monsterSkeleton{
-  background-color: ;
   background-repeat: no-repeat;
   background-image: url("/Users/joshstorm/DEVELOPMENT/Project1_Game/images/monster_Skeleton.png");
   background-size:contain;
@@ -126,18 +120,14 @@ background-color: ;
 #map div.weapon{
   background-repeat: no-repeat;
   background-image: url("/Users/joshstorm/DEVELOPMENT/Project1_Game/images/Weapon Chest.png");
-  background-color: ;
   background-size: contain;
 }
 #map div.healthPot{
-  background-color: ;
   background-repeat: no-repeat;
   background-image: url("/Users/joshstorm/DEVELOPMENT/Project1_Game/images/Health Potion.png");
   background-size: contain;}
 #map div.boss{
-  background-color: ;
   background-repeat: no-repeat;
   background-image: url("/Users/joshstorm/DEVELOPMENT/Project1_Game/images/Boss.png");
   background-size: contain;
-  border-radius:
 }

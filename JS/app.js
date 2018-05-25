@@ -9,7 +9,7 @@ $(()=>{
 
   // ######################### PLAYER CHARACTER ###################################//
 
-  const playerChar = {health: 100, attack: 10};
+  const playerChar = {health: 120, attack: 10};
 
   //###################GRID CELL CLASSES#########################//
   $.each(gameGrid, (i, row) =>{
@@ -88,20 +88,20 @@ $(()=>{
 
   //#################### COMBAT #####################################################//
   const mobsArray = [
-    {health: 10, x: 3, y: 5},
-    {health: 10, x: 6, y: 2},
-    {health: 10, x: 8, y: 7},
-    {health: 10, x: 5, y: 9},
-    {health: 10, x: 7, y: 13},
-    {health: 10, x: 5, y: 23},
-    {health: 10, x: 8, y: 20},
-    {health: 10, x: 6, y: 17},
-    {health: 10, x: 2, y: 21},
-    {health: 10, x: 16, y: 25},
-    {health: 10, x: 17, y: 17},
-    {health: 10, x: 17, y: 10},
-    {health: 10, x: 11, y: 6},
-    {health: 10, x: 14, y: 1}
+    {health: 100, x: 3, y: 5},
+    {health: 100, x: 6, y: 2},
+    {health: 100, x: 8, y: 7},
+    {health: 100, x: 5, y: 9},
+    {health: 100, x: 7, y: 13},
+    {health: 100, x: 5, y: 23},
+    {health: 100, x: 8, y: 20},
+    {health: 100, x: 6, y: 17},
+    {health: 100, x: 2, y: 21},
+    {health: 100, x: 16, y: 25},
+    {health: 100, x: 17, y: 17},
+    {health: 100, x: 17, y: 10},
+    {health: 100, x: 11, y: 6},
+    {health: 100, x: 14, y: 1}
   ];
 
 
