@@ -158,7 +158,7 @@ $(()=>{
   function death(mob){
     if (mob.health < 1){
       $(`div[data-x='${mob.x}'][data-y='${mob.y}']`).removeClass('mob').addClass('monsterSkeleton');
-      const index = mobsArray.indexOf(mob);
+      // const index = mobsArray.indexOf(mob);
       $heroLog.text('Monster dies!');
       // console.log(mobsArray[index]);
       // mobsArray.splice(index, 1);
